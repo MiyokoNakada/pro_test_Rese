@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function admin()
     {
         $managers = Manager::with('user', 'shop')->get();
-        
+
         return view('admin', compact('managers'));
     }
 
@@ -26,7 +26,7 @@ class AdminController extends Controller
     {
         $form = $request->all();
         User::create($form);
-        
+
         return redirect('admin')->with('message', '店舗代表者を作成しました');
     }
 

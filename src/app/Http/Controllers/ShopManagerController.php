@@ -61,12 +61,12 @@ class ShopManagerController extends Controller
                 $form['image'] = $imageName;
             }
             Shop::find($shop->id)->update($form);
-        }      
+        }
         $new_manager = new Manager;
         $new_manager->user_id = $user->id;
         $new_manager->shop_id = $shop->id;
         $new_manager->save();
-        
+
         return redirect('shop_manager')->with('message', '店舗情報を作成しました');
     }
 

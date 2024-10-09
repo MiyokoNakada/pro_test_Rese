@@ -22,7 +22,7 @@ class MypageController extends Controller
         foreach ($bookings as $booking) {
             $booking['formatted_time'] = Carbon::parse($booking->time)->format('H:i');
         }
-        
+
         $favourites = favourite::with('shop', 'shop.area', 'shop.genre')
             ->where('user_id', $user_id)->get();
 
