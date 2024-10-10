@@ -7,6 +7,9 @@ use App\Models\Manager;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class ShopsImport implements ToModel, WithHeadingRow
 {
@@ -22,12 +25,15 @@ class ShopsImport implements ToModel, WithHeadingRow
             return null;
         }
 
+        $imageUrl = $row['image'];
+        $imageName = $this->downloadImage($imageUrl);
+
         $shop = new Shop([
             'name' => $row['shop'],
             'area_id' => $area_id,
             'genre_id' => $genre_id,
             'description' => $row['description'],
-            'image' => $row['image'],
+            'image' => $imageName,
         ]);
         $shop->save();
 
@@ -40,5 +46,33 @@ class ShopsImport implements ToModel, WithHeadingRow
         }
 
         return $shop;
+    }
+
+    //画像をダウンロードして保存するメソッド
+    private function downloadImage($url)
+    {
+        $response = Http::withOptions(['stream' => true])->get($url);
+        if ($response->successful()) {
+            $mimeType = $response->header('Content-Type');
+
+            $extension = null;
+            $mimeTypes = [
+                'image/jpeg' => 'jpg',
+                'image/png' => 'png',
+            ];
+            if (isset($mimeTypes[$mimeType])) {
+                $extension = $mimeTypes[$mimeType];
+            }
+            if (!$extension) {
+                return null;
+            }
+            $imageName = Str::random(20) . '.' . $extension;
+            $stream = $response->getBody()->getContents();
+            Storage::put('public/image/' . $imageName, $stream);
+
+            return $imageName;
+        }
+
+        return null;
     }
 }
