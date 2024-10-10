@@ -36,7 +36,7 @@ class BookingController extends Controller
         $form = $request->all();
         unset($form['_token']);
         Booking::find($request->id)->update($form);
-    
+
         return redirect('/mypage')->with('message', '予約を変更しました');
     }
 

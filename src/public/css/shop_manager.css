@@ -23,10 +23,10 @@
     width: 50%;
 }
 @media screen and (max-width: 768px) {
-    .shop-info, 
+    .shop-info,
     .booking-info{
         width: 100%;
-        margin: 0 0 20px 0;     
+        margin: 0 0 20px 0;
     }
 }
 
@@ -63,7 +63,7 @@
 }
 .shop-info__table th{
     width: 25%;
-    height: 40px;    
+    height: 40px;
 }
 
 .shop-info__table input, select, textarea{
@@ -129,7 +129,7 @@
 }
 @media screen and (max-width: 768px) {
     .shop_detail_update{
-       width: 100%;
+        width: 100%;
 }
 }
 

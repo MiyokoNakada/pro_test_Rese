@@ -16,7 +16,7 @@ services:
     volumes:
       - ./src:/var/www/
     entrypoint: sh -c "/usr/sbin/cron -f & php-fpm"
-  
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
