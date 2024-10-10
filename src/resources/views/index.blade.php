@@ -8,41 +8,43 @@
 @component('components.menu2')
 @endcomponent
 
-<div class="sort">
-    <form class="sort__form" action="/sort">
-        <select name="sort" onchange="this.form.submit()">
-            <option value="">並び替え：評価高/低</option>
-            <option value="random">ランダム</option>
-            <option value="high">評価が高い順</option>
-            <option value="low">評価が低い順</option>
-        </select>
-    </form>
+<div class="sort_search">
+    <div class="sort">
+        <form class="sort__form" action="/sort">
+            <select class="sort__form-select" name="sort" onchange="this.form.submit()">
+                <option value="">並び替え：評価高/低</option>
+                <option value="random">ランダム</option>
+                <option value="high">評価が高い順</option>
+                <option value="low">評価が低い順</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="search">
+        <form class="search__form" action="/search" method="get">
+            @csrf
+            <select class="search__option" name="area_id">
+                <option value="">All area</option>
+                @foreach ($areas as $area)
+                <option value="{{ $area->id }}" {{ request('area_id') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
+                @endforeach
+            </select>
+            <select class="search__option" name="genre_id">
+                <option value="">All genre</option>
+                @foreach ($genres as $genre)
+                <option value="{{ $genre->id }}" {{ request('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
+                @endforeach
+            </select>
+            <div class="search__submit-wrapper">
+                <button class="search__submit" type=" submit">
+                    <i class="search__submit_icon fa-solid fa-magnifying-glass fa-lg"></i>
+                </button>
+                <input class="search__option" type="text" name="keyword" placeholder="Search..." value="{{ request('keyword') }}">
+            </div>
+        </form>
+    </div>
 </div>
 
-
-<div class="search">
-    <form class="search__form" action="/search" method="get">
-        @csrf
-        <select class="search__option" name="area_id">
-            <option value="">All area</option>
-            @foreach ($areas as $area)
-            <option value="{{ $area->id }}" {{ request('area_id') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
-            @endforeach
-        </select>
-        <select class="search__option" name="genre_id">
-            <option value="">All genre</option>
-            @foreach ($genres as $genre)
-            <option value="{{ $genre->id }}" {{ request('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
-            @endforeach
-        </select>
-        <div class="search__submit-wrapper">
-            <button class="search__submit" type=" submit">
-                <i class="search__submit_icon fa-solid fa-magnifying-glass fa-lg"></i>
-            </button>
-            <input class="search__option" type="text" name="keyword" placeholder="Search..." value="{{ request('keyword') }}">
-        </div>
-    </form>
-</div>
 
 <div class="shops">
     @foreach($shops as $shop)
