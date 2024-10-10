@@ -8,6 +8,18 @@
 @component('components.menu2')
 @endcomponent
 
+<div class="sort">
+    <form class="sort__form" action="/sort">
+        <select name="sort" onchange="this.form.submit()">
+            <option value="">並び替え：評価高/低</option>
+            <option value="random">ランダム</option>
+            <option value="high">評価が高い順</option>
+            <option value="low">評価が低い順</option>
+        </select>
+    </form>
+</div>
+
+
 <div class="search">
     <form class="search__form" action="/search" method="get">
         @csrf

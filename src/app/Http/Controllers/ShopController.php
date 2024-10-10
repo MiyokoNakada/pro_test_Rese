@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Shop;
+use Illuminate\Support\Facades\DB;
+
 
 class ShopController extends Controller
 {
@@ -17,6 +19,32 @@ class ShopController extends Controller
         $shops = Shop::with('area', 'genre')->get();
 
         return view('index', compact('areas', 'genres', 'shops'));
+    }
+
+    //ソート機能
+    public function sort(Request $request)
+    {
+        $sort = $request->input('sort');
+
+        $shops = Shop::leftJoin('bookings', 'shops.id', '=', 'bookings.shop_id')
+            ->leftJoin('ratings', 'bookings.id', '=', 'ratings.booking_id')
+            ->select('shops.*', DB::raw('AVG(ratings.rating) as avg_rating'))
+            ->groupBy('shops.id');
+
+        if ($sort == 'high') {
+            $shops->orderByRaw('AVG(ratings.rating) IS NULL')
+                ->orderBy('avg_rating', 'desc');
+        } elseif ($sort == 'low') {
+            $shops->orderByRaw('AVG(ratings.rating) IS NULL')
+                ->orderBy('avg_rating', 'asc');
+        } else {
+            $shops->inRandomOrder();
+        }
+
+        $areas = Area::all();
+        $genres = Genre::all();
+        $shops = $shops->with('area', 'genre')->get();
+        return view('index', compact('areas', 'genres', 'shops', 'sort'));
     }
 
     //検索機能
@@ -46,5 +74,4 @@ class ShopController extends Controller
         $detail = Shop::find($shop_id);
         return view('shop_detail', compact('detail'));
     }
-
 }

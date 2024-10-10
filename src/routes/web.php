@@ -26,6 +26,7 @@ use App\Http\Controllers\PaymentController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [ShopController::class, 'index']);
+    Route::get('/sort', [ShopController::class, 'sort']);
     Route::get('/search', [ShopController::class, 'search']);
     Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
 
