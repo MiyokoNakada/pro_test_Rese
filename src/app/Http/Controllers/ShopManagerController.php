@@ -48,14 +48,14 @@ class ShopManagerController extends Controller
         $user = Auth::user();
         $form = $request->all();
         $shop = Shop::create($form);
-        // 画像のアップロード処理(環境に応じて切り分け)
+
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $imageName = $imageFile->getClientOriginalName();
-            if (app()->environment('local')) { //開発環境
+            if (app()->environment('local')) {
                 $path = $imageFile->storeAs('public/image', $imageName);
                 $form['image'] = $imageName;
-            } else {  //本番環境
+            } else {
                 $path = Storage::disk('s3')->put('images/' . $imageName, file_get_contents($imageFile));
                 Storage::disk('s3')->setVisibility('images/' . $imageName, 'public');
                 $form['image'] = $imageName;
@@ -91,14 +91,13 @@ class ShopManagerController extends Controller
         $shop_info = Manager::where('user_id', $user_id)->first();
         $shop_id = $shop_info->shop->id;
 
-        // 画像のアップロード処理(環境に応じて切り分け)
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $imageName = $imageFile->getClientOriginalName();
-            if (app()->environment('local')) { //開発環境
+            if (app()->environment('local')) {
                 $imageFile->storeAs('public/image', $imageName);
                 $form['image'] = $imageName;
-            } else {  //本番環境
+            } else {
                 Storage::disk('s3')->put('images/' . $imageName, file_get_contents($imageFile));
                 Storage::disk('s3')->setVisibility('images/' . $imageName, 'public');
                 $form['image'] = $imageName;

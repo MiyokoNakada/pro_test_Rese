@@ -1,36 +1,68 @@
+.sort_search{
+    display: flex;
+    justify-content: right;
+}
+
+.sort *{
+    background-color: white;
+}
+
+.sort{
+    display: inline-block;
+    height: 40px;
+    margin: -65px 20px 40px auto;
+    border-radius: 5px;
+    box-shadow: gray 2px 2px 2px;
+    position: relative;
+    z-index: 30;
+}
+
+.sort__form{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.sort__form-select{
+    height: 30px;
+    margin: 5px 0 5px 0;
+    padding: 0 5px 0 5px;
+    border: none;
+}
+
 .search *{
-    background-color: white;   
+    background-color: white;
 }
 
 .search {
     display: flex;
     width: 50vw;
-    margin: -65px 0 40px auto;
-    height: 40px;    
+    margin: -65px 0 40px 20px;
+    height: 40px;
     border-radius: 5px;
     box-shadow: gray 2px 2px 2px;
-    position: relative; 
+    position: relative;
     z-index: 30;
 }
 .search__form{
     display: flex;
-    width: 100%;     
+    width: 100%;
     border-radius: 5px;
 }
 
 @media screen and (max-width: 768px) {
-  .search {
-    flex-wrap: wrap;
-    flex-direction: column;
-    height: auto; 
-    width:100%;
-    margin: 10px 0;
-    position: static; 
-    z-index: 10;
-  }
-  .search__form{
-    flex-direction: column;
-  }
+    .search {
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: auto;
+        width:100%;
+        margin: 10px 0;
+        position: static;
+        z-index: 10;
+    }
+    .search__form{
+        flex-direction: column;
+    }
 }
 
 .search__option {
@@ -45,17 +77,17 @@
     border-right: gray 1px solid;
 }
 @media screen and (max-width: 768px) {
-  .search__form select {
-    border-right: none;
-    border-bottom: gray 1px solid;
-    }
+    .search__form select {
+        border-right: none;
+        border-bottom: gray 1px solid;
+        }
 }
 
 .search__submit-wrapper{
     display: flex;
 }
 .search__submit{
-    border: none;  
+    border: none;
 }
 .search__submit_icon{
     color: gray;
@@ -132,7 +164,7 @@ p {
 @media screen and (max-width: 480px) {
     .shops{
         gap: 10px;
-    }    
+    }
     .shops-cards {
         display: flex;
         height: 110px;

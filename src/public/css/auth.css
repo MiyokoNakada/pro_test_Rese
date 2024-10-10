@@ -6,10 +6,10 @@
     box-shadow: gray 2px 2px 2px;
 }
 @media screen and (max-width: 768px) {
-  .auth-inner {
-    width:80vw;    
-    margin: 10px auto;
-  }
+    .auth-inner {
+        width:80vw;
+        margin: 10px auto;
+}
 }
 
 .auth-inner p{
@@ -54,7 +54,7 @@
     font-size: 24px;
     color: gray;
     margin-left: 30px;
-    position: absolute;    
+    position: absolute;
         top: 15px;
 }
 
@@ -78,8 +78,6 @@
     margin: 30px;
 }
 
-
-/* エラーメッセージ */
 .form__error{
     color: red;
     margin-left: 40px;

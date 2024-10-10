@@ -27,7 +27,7 @@
     font-size: 18px;
     text-align: center;
     text-decoration: none;
-    border-radius: 5px;   
+    border-radius: 5px;
     box-shadow: gray 2px 2px 2px;
     cursor: pointer;
     transform: translate(0, -5px);
@@ -53,7 +53,7 @@
 @media screen and (max-width: 768px) {
     .booking{
         width: 100%;
-        margin: 0 0 60px 0;        
+        margin: 0 0 60px 0;
         z-index: 10;
     }
 }
@@ -64,12 +64,12 @@
     padding: 40px 40px 20px 40px;
     background-color: rgb(100, 100, 255);
     border-top-left-radius: 5px;
-    border-top-right-radius: 5px;   
+    border-top-right-radius: 5px;
     box-shadow: gray 2px 2px 2px;
 }
 @media screen and (max-width: 480px) {
     .booking-card{
-       padding: 20px;
+        padding: 20px;
     }
 }
 
@@ -82,7 +82,7 @@
 
 .booking-form h2{
     background-color: rgb(100, 100, 255);
-    color: white; 
+    color: white;
 }
 
 .booking-date, .booking-time, .booking-number{
@@ -92,7 +92,7 @@
     padding-left: 10px;
     background-color: white;
     border: none;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 .booking-time, .booking-number{
@@ -130,7 +130,7 @@
     margin: 0 -40px;
     border: none;
     border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;       
+    border-bottom-right-radius: 5px;
     box-shadow: gray 2px 2px 2px;
     cursor: pointer;
     position: absolute;
@@ -138,8 +138,8 @@
 }
 @media screen and (max-width: 480px) {
     .booking-submit{
-       width: calc(100% + 40px);
-       margin: 0 -20px;
+        width: calc(100% + 40px);
+        margin: 0 -20px;
     }
 }
 

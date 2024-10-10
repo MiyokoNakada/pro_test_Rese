@@ -22,7 +22,7 @@
 @media screen and (max-width: 768px) {
     .my_bookings{
         width: 100%;
-        margin: 0 0 20px 0;     
+        margin: 0 0 20px 0;
     }
 }
 
@@ -35,13 +35,13 @@
     background-color: rgb(100, 100, 255);
     padding: 40px;
     margin-bottom: 20px;
-    border-radius: 5px;   
+    border-radius: 5px;
     box-shadow: gray 2px 2px 2px;
     position: relative;
 }
 @media screen and (max-width: 768px) {
     .my_bookings__card{
-        padding: 20px 20px 20px 30px ;   
+        padding: 20px 20px 20px 30px ;
     }
 }
 
@@ -96,7 +96,7 @@
     padding-right: 5px;
 }
 
-.my_bookings__table-item input, 
+.my_bookings__table-item input,
 select{
     font-size: 16px;
     border: none;
@@ -110,7 +110,7 @@ select{
 @media screen and (max-width: 768px) {
     .my_favourites{
         width: 100%;
-        margin: 0 0 20px 0;  
+        margin: 0 0 20px 0;
     }
 }
 
@@ -129,11 +129,11 @@ select{
 @media screen and (max-width: 768px) {
     .my_bookings-change{
         width: 100%;
-        margin: 0 0 20px 0;     
+        margin: 0 0 20px 0;
     }
 }
 
-.return{    
+.return{
     display: inline-block;
     width: 30px;
     height: 30px;

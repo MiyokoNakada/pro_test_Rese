@@ -46,5 +46,4 @@ class ShopRequest extends FormRequest
             'image.max' => 'ファイルサイズは2MB以内にしてください',
         ];
     }
-    
 }

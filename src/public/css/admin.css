@@ -1,4 +1,4 @@
-.alert, 
+.alert,
 .error{
     color: red;
 }
@@ -11,7 +11,7 @@
 }
 
 
-.create-manager, 
+.create-manager,
 .email {
     margin-bottom:40px;
 }
@@ -23,13 +23,13 @@
     }
 }
 
-.create-manager__form >input, 
+.create-manager__form >input,
 .create-manager__form >button,
-.email__form-item >input, 
+.email__form-item >input,
 .email__form-item >button{
     height: 40px;
     border: none;
-    border-radius: 5px; 
+    border-radius: 5px;
     margin-bottom: 5px;
 }
 
@@ -55,13 +55,13 @@
 .email__form-item >textarea{
     width: 30vw;
     border: none;
-    border-radius: 5px; 
+    border-radius: 5px;
     padding: 10px;
     line-height: 15px;
 }
 
 @media screen and (max-width: 768px) {
-    .create-manager__form >*, 
+    .create-manager__form >*,
     .email__form-item >*,
     .email__form-item:nth-child(3) >input,
     .email__form-item >textarea{
@@ -70,7 +70,7 @@
 }
 
 
-.manager-table{    
+.manager-table{
     margin-bottom: 40px;
 }
 

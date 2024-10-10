@@ -26,12 +26,13 @@ use App\Http\Controllers\PaymentController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [ShopController::class, 'index']);
+    Route::get('/sort', [ShopController::class, 'sort']);
     Route::get('/search', [ShopController::class, 'search']);
     Route::get('/detail/{shop_id}', [ShopController::class, 'detail']);
 
     Route::post('/done', [BookingController::class, 'bookingDone']);
     Route::get('/booking_change', [BookingController::class, 'bookingChange']);
-    Route::post('/booking_update', [BookingController::class, 'bookingUpdate']);    
+    Route::post('/booking_update', [BookingController::class, 'bookingUpdate']);
     Route::post('/booking_delete', [BookingController::class, 'bookingDelete']);
 
     Route::get('/mypage', [MypageController::class, 'mypage']);
@@ -52,7 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::group(['middleware' => ['auth', 'can:shop_manager']], function () {
         Route::get('/shop_manager', [ShopManagerController::class, 'shopManager']);
-        Route::post('/shop_manager/create', [ShopManagerController::class, 'createShop']);      
+        Route::post('/shop_manager/create', [ShopManagerController::class, 'createShop']);
         Route::get('/shop_manager/update_detail', [ShopManagerController::class, 'showShopDetail']);
         Route::post('/shop_manager/update_detail', [ShopManagerController::class, 'updateShopDetail']);
         Route::get('/shop_manager/booking_detail', [ShopManagerController::class, 'bookingDetail']);
