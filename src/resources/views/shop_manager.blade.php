@@ -86,6 +86,7 @@
             <p>店舗情報がありません。店舗情報を作成してください。</p>
             <h3>店舗情報作成</h3>
             <div class="shop-info__create">
+                <h4>1. フォームを記入して作成</h4>
                 <form action="/shop_manager/create" method="POST" enctype="multipart/form-data">
                     @csrf
                     <table class="shop-info__table">
@@ -127,6 +128,15 @@
                             <th></th>
                             <td><button class="shop-info_create-btn" type="submit">作成する</button></td>
                         </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="shop-info__csv-import">
+                <h4>2. 店舗情報CSVをインポートして作成</h4>
+                <form class="csv-import__form" action="/shop_manager/csv_import" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="csv_file" accept=".csv">
+                    <button type="submit">インポート</button>
                 </form>
             </div>
         </div>

@@ -12,6 +12,8 @@ use App\Models\Area;
 use App\Models\Genre;
 use Carbon\Carbon;
 use App\Http\Requests\ShopRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ShopsImport;
 
 class ShopManagerController extends Controller
 {
@@ -40,11 +42,12 @@ class ShopManagerController extends Controller
                 $booking['formatted_time'] = Carbon::parse($booking->time)->format('H:i');
             }
         }
-        return view('shop_manager', compact('shop_info', 'bookings','areas','genres'));
+        return view('shop_manager', compact('shop_info', 'bookings', 'areas', 'genres'));
     }
 
     //店舗情報作成機能
-    public function createShop(ShopRequest $request){
+    public function createShop(ShopRequest $request)
+    {
         $user = Auth::user();
         $form = $request->all();
         $shop = Shop::create($form);
@@ -68,6 +71,18 @@ class ShopManagerController extends Controller
         $new_manager->save();
 
         return redirect('shop_manager')->with('message', '店舗情報を作成しました');
+    }
+
+    // CSVインポート店舗情報作成機能
+    public function importCsv(Request $request)
+    {
+        if ($request->hasFile('csv_file')) {
+            Excel::import(new ShopsImport, $request->file('csv_file'));
+
+            return redirect('shop_manager')->with('message', '店舗情報を作成しました');
+        }
+
+        return redirect('shop_manager')->with('error', 'ファイルが選択されていません。');
     }
 
     //店舗情報編集画面表示
@@ -119,7 +134,8 @@ class ShopManagerController extends Controller
     }
 
     //来店確認
-    public function storeVisit(Request $request){
+    public function storeVisit(Request $request)
+    {
         $booking = Booking::find($request->id);
         $booking->visit_at = now();
         $booking->save();

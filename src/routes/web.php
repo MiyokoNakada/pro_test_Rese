@@ -54,6 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::group(['middleware' => ['auth', 'can:shop_manager']], function () {
         Route::get('/shop_manager', [ShopManagerController::class, 'shopManager']);
         Route::post('/shop_manager/create', [ShopManagerController::class, 'createShop']);
+        Route::post('/shop_manager/csv_import', [ShopManagerController::class, 'importCsv']);
         Route::get('/shop_manager/update_detail', [ShopManagerController::class, 'showShopDetail']);
         Route::post('/shop_manager/update_detail', [ShopManagerController::class, 'updateShopDetail']);
         Route::get('/shop_manager/booking_detail', [ShopManagerController::class, 'bookingDetail']);
