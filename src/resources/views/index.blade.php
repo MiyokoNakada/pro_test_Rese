@@ -12,7 +12,7 @@
     <div class="sort">
         <form class="sort__form" action="/sort">
             <select class="sort__form-select" name="sort" onchange="this.form.submit()">
-                <option value="">並び替え：評価高/低</option>
+                <option value="" hidden>並び替え：評価高/低</option>
                 <option value="random">ランダム</option>
                 <option value="high">評価が高い順</option>
                 <option value="low">評価が低い順</option>
