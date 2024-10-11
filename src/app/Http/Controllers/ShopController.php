@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Shop;
+use App\Models\Booking;
+use App\Models\Rating;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class ShopController extends Controller
@@ -71,7 +74,25 @@ class ShopController extends Controller
     //飲食店詳細表示
     public function detail($shop_id)
     {
+        $user_id = Auth::user()->id;
         $detail = Shop::find($shop_id);
-        return view('shop_detail', compact('detail'));
+
+        $userBookings = Booking::where('user_id', $user_id)
+            ->where('shop_id', $shop_id)
+            ->get();
+
+        $pendingBooking = $userBookings
+            ->filter(function ($booking) {
+                return !$booking->rating;
+            })
+            ->first();
+
+        $bookingIds = $userBookings->pluck('id');
+        $userRating = Rating::whereIn('booking_id', $bookingIds)
+            ->latest()
+            ->first();
+
+
+        return view('shop_detail', compact('detail', 'pendingBooking', 'userRating'));
     }
 }

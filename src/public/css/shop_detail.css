@@ -44,6 +44,61 @@
     width: 100%;
 }
 
+
+.shop-rating__pending-rating{
+    margin-bottom: 30px;
+}
+.shop-rating__rating_button{
+    border: none;
+}
+.shop-rating__rating_link{
+    font-size: 16px;
+    text-decoration: underline;
+    font-weight: 400;
+    color: black;
+}
+
+.shop-rating__all-reviews{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: solid gray 1px;
+    margin-bottom: 10px;
+}
+.shop-rating__all-reviews_link{
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    padding-top: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    background-color: rgb(77, 77, 255);
+    border-radius: 5px;
+}
+
+.shop-rating__latest-review{
+    border-bottom: solid gray 1px;
+}
+.shop-rating__latest-review_buttons{
+    display: flex;
+    justify-content: right;
+}
+.shop-rating__latest-review_link{
+    font-size: 14px;
+    text-decoration: underline;
+    font-weight: 400;
+    color: black;
+    padding-right: 20px;
+    padding-top: 2px;
+}
+.shop-rating__latest-review_button{
+    font-size: 14px;
+    border: none;
+    text-decoration: underline;
+}
+
+
 .booking{
     width: 50%;
     margin: -40px 0 60px 30px;
@@ -60,7 +115,7 @@
 
 .booking-card{
     width: 100%;
-    height: 100%;
+    height: 80vh;
     padding: 40px 40px 20px 40px;
     background-color: rgb(100, 100, 255);
     border-top-left-radius: 5px;
