@@ -41,6 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/rating', [RatingController::class, 'showRating']);
     Route::post('/rating', [RatingController::class, 'rating']);
+    Route::get('/rating/all_reviews/{shop_id}', [RatingController::class, 'allReviews']);
 
     Route::get('/payment', [PaymentController::class, 'paymentPage']);
     Route::post('/payment', [PaymentController::class, 'payment']);

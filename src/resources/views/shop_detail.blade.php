@@ -11,15 +11,55 @@
 
 <div class="details">
     <div class="shop-detail">
-        <a href='/' class="return"> &lt;</a>
-        <h2 class="shop-name">{{ $detail->name }}</h2>
-        @if(app()->environment('local'))
-        <img class="shop-img" src="{{ asset('storage/image/' . $detail->image) }}" alt="">
-        @else
-        <img class="shop-img" src="{{ Storage::disk('s3')->url('images/' . $detail->image) }}" alt="">
-        @endif
-        <p>#{{ $detail->area->name }} #{{ $detail->genre->name }}</p>
-        <p>{{ $detail->description }}</p>
+        <div class="shop-detail__inner">
+            <a href='/' class="return"> &lt;</a>
+            <h2 class="shop-name">{{ $detail->name }}</h2>
+            @if(app()->environment('local'))
+            <img class="shop-img" src="{{ asset('storage/image/' . $detail->image) }}" alt="">
+            @else
+            <img class="shop-img" src="{{ Storage::disk('s3')->url('images/' . $detail->image) }}" alt="">
+            @endif
+            <p>#{{ $detail->area->name }} #{{ $detail->genre->name }}</p>
+            <p>{{ $detail->description }}</p>
+        </div>
+
+        <div class="shop-rating">
+            <div class="shop-rating__pending-rating">
+                @if($pendingBooking)
+                <button class="shop-rating__rating_button">
+                    <a class="shop-rating__rating_link" href="{{ url('/rating?booking_id=' . $pendingBooking->id) }}">口コミを投稿する</a>
+                </button>
+                @endif
+            </div>
+            <div class="shop-rating__all-reviews">
+                <a class="shop-rating__all-reviews_link" href="{{ url('/rating/all_reviews/' . $detail->id ) }}">全ての口コミ情報</a>
+            </div>
+            <div class="shop-rating__latest-review">
+                @if($userRating)
+                <div class="shop-rating__latest-review_buttons">
+                    <a class="shop-rating__latest-review_link" href="{{ url('/rating/' . $userRating->id) }}">口コミを編集</a>
+                    <form class="shop-rating__latest-review_form" action="{{ url('/rating/' . $userRating->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="shop-rating__latest-review_button" type="submit">口コミを削除</button>
+                    </form>
+                </div>
+                <p>
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <=$userRating->rating)
+                        ★
+                        @else
+                        ☆
+                        @endif
+                        @endfor
+                </p>
+                <p>{{ $userRating->comment }}</p>
+                @if($userRating->rating_image)
+                <img src="{{ asset('storage/image/' . $userRating->rating_image) }}" alt="" width="200px">
+                @endif
+                @endif
+            </div>
+        </div>
     </div>
 
     <div class="booking">

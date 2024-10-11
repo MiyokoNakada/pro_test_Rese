@@ -1,74 +1,72 @@
-.return{
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    color: black;
-    font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: gray 2px 2px 2px;
-    cursor: pointer;
-    transform: translate(0, -5px);
+/* *{
+    border: salmon dotted 1px;
+} */
+
+.rating{
+    display: flex;
+    justify-content: space-around;
 }
 
-.rating-card {
+.rating__inner-left{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.rating__inner-left_inner{
+    width: 80%;
+}
+.rating__title{
+    font-size: 24px;
+}
+
+
+.rating__inner-right {
     width: 50%;
-    background-color: rgb(100, 100, 255);
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: gray 2px 2px 2px;
-}
-@media screen and (max-width: 768px) {
-    .rating-card{
-        width: 100%;
-    }
 }
 
-.rating__table *{
-    background-color: rgb(100, 100, 255);
-    color: white;
+.rating__form_textarea{
+    width: 90%;
 }
 
-.rating__table_row th{
-    width: 25%;
-    height: 80%;
-    font-size: 16px;
-}
-
-.rating__table_row textarea{
-    width: 100%;
-    border: white solid 1px;
-}
-
-.rating__table_btn{
-    width: 80px;
+.rating__table_submit-button{
     background-color: white;
-    color: rgb(100, 100, 255);
-    font-weight: bold;
-    margin-bottom: 5px;
-    padding: 5px;
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
+
+
+
+
+
+
 
 /* 星マーク */
-.rating__table_star{
+.rating__form_star{
     display: flex;
     flex-direction: row-reverse;
     justify-content: left;
 }
-.rating__table_star input{
+.rating__form_star input{
     display: none;
 }
-.rating__table_star label{
+.rating__form_star label{
     font-size: 2rem;
     color: #D2D2D2;
     cursor: pointer;
 }
-.rating__table_star label:hover,
-.rating__table_star label:hover ~ label,
-.rating__table_star input:checked ~ label {
-    color: #F8C601;
+.rating__form_star label:hover,
+.rating__form_star label:hover ~ label,
+.rating__form_star input:checked ~ label {
+    color: rgb(100, 100, 255);
+}
+
+
+.error{
+    color: red;
 }
