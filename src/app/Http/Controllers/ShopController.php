@@ -92,6 +92,10 @@ class ShopController extends Controller
             ->latest()
             ->first();
 
+        if ($userRating) {
+            $pendingBooking = null;
+        }
+
 
         return view('shop_detail', compact('detail', 'pendingBooking', 'userRating'));
     }

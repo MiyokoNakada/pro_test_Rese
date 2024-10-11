@@ -32,7 +32,7 @@
                 @endif
             </div>
             <div class="shop-rating__all-reviews">
-                <a class="shop-rating__all-reviews_link" href="{{ url('/shop/' . $detail->id . '/reviews') }}">全ての口コミ情報</a>
+                <a class="shop-rating__all-reviews_link" href="{{ url('/rating/all_reviews/' . $detail->id ) }}">全ての口コミ情報</a>
             </div>
             <div class="shop-rating__latest-review">
                 @if($userRating)
@@ -44,10 +44,18 @@
                         <button class="shop-rating__latest-review_button" type="submit">口コミを削除</button>
                     </form>
                 </div>
-                <p>{{ $userRating->rating }} / 5</p>
+                <p>
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($i <=$userRating->rating)
+                        ★
+                        @else
+                        ☆
+                        @endif
+                        @endfor
+                </p>
                 <p>{{ $userRating->comment }}</p>
                 @if($userRating->rating_image)
-                <img src="{{ asset('storage/image/' . $userRating->rating_image) }}" alt="no image">
+                <img src="{{ asset('storage/image/' . $userRating->rating_image) }}" alt="" width="200px">
                 @endif
                 @endif
             </div>

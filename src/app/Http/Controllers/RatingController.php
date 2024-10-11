@@ -24,7 +24,7 @@ class RatingController extends Controller
         $genres = Genre::all();
         $shop = Shop::with('area', 'genre')->find($shop_id);
 
-        return view('rating', compact('booking','areas', 'genres', 'shop'));
+        return view('rating', compact('booking', 'areas', 'genres', 'shop'));
     }
 
     //評価機能
@@ -49,5 +49,17 @@ class RatingController extends Controller
 
         $shop_id = Booking::find($request->booking_id)->shop_id;
         return redirect('/detail/' . $shop_id)->with('message', '評価を投稿しました');
+    }
+
+    //口コミ一覧ページ表示
+    public function allReviews($shop_id)
+    {
+        $shop = Shop::find($shop_id);
+        $bookingIds = Booking::where('shop_id', $shop_id)->pluck('id');
+        $reviews = Rating::with('booking')
+            ->whereIn('booking_id', $bookingIds)
+            ->get();
+
+        return view('reviews', compact('shop', 'reviews'));
     }
 }
