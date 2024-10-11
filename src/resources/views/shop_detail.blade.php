@@ -46,8 +46,8 @@
                 </div>
                 <p>{{ $userRating->rating }} / 5</p>
                 <p>{{ $userRating->comment }}</p>
-                @if($userRating->image)
-                <img src="{{ asset('storage/images/' . $userRating->image) }}" alt="no image">
+                @if($userRating->rating_image)
+                <img src="{{ asset('storage/image/' . $userRating->rating_image) }}" alt="no image">
                 @endif
                 @endif
             </div>
