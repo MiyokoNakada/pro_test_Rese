@@ -37,14 +37,14 @@
             <div class="shop-rating__latest-review">
                 @if($userRating)
                 <div class="shop-rating__latest-review_buttons">
-                    <a class="shop-rating__latest-review_link" href="{{ url('/rating/' . $userRating->id) }}">口コミを編集</a>
-                    <form class="shop-rating__latest-review_form" action="{{ url('/rating/' . $userRating->id) }}" method="POST">
+                    <a class="shop-rating__latest-review_edit" href="{{ url('/rating/' . $userRating->id) }}">口コミを編集</a>
+                    <form class="shop-rating__latest-review_form" action="{{ url('/rating/' . $userRating->booking_id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="shop-rating__latest-review_button" type="submit">口コミを削除</button>
+                        <button class="shop-rating__latest-review_delete" type="submit">口コミを削除</button>
                     </form>
                 </div>
-                <p>
+                <p class="shop-rating__latest-review_stars">
                     @for ($i = 1; $i <= 5; $i++)
                         @if ($i <=$userRating->rating)
                         ★
@@ -53,9 +53,9 @@
                         @endif
                         @endfor
                 </p>
-                <p>{{ $userRating->comment }}</p>
+                <p class="shop-rating__latest-review_comment">{{ $userRating->comment }}</p>
                 @if($userRating->rating_image)
-                <img src="{{ asset('storage/image/' . $userRating->rating_image) }}" alt="" width="200px">
+                <img class="shop-rating__latest-review_image" src="{{ asset('storage/image/' . $userRating->rating_image) }}" alt="" width="200px">
                 @endif
                 @endif
             </div>
