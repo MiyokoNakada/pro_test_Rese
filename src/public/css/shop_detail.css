@@ -84,7 +84,7 @@
     display: flex;
     justify-content: right;
 }
-.shop-rating__latest-review_link{
+.shop-rating__latest-review_edit{
     font-size: 14px;
     text-decoration: underline;
     font-weight: 400;
@@ -92,11 +92,26 @@
     padding-right: 20px;
     padding-top: 2px;
 }
-.shop-rating__latest-review_button{
+.shop-rating__latest-review_delete{
     font-size: 14px;
     border: none;
     text-decoration: underline;
 }
+.shop-rating__latest-review_stars{
+    line-height: 30px;
+    font-size: 30px;
+    letter-spacing: -5px;
+    color: rgb(100, 100, 255);
+}
+.shop-rating__latest-review_stars,
+.shop-rating__latest-review_comment{
+    margin: 0;
+}
+.shop-rating__latest-review_image{
+    margin-bottom: 20px;
+    max-height: 300px;
+}
+
 
 
 .booking{
@@ -203,3 +218,4 @@
     color: rgb(255, 180, 180);
     background-color: rgb(100, 100, 255);
 }
+

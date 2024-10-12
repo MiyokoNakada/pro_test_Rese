@@ -40,12 +40,6 @@
     cursor: pointer;
 }
 
-
-
-
-
-
-
 /* 星マーク */
 .rating__form_star{
     display: flex;
@@ -66,7 +60,42 @@
     color: rgb(100, 100, 255);
 }
 
-
 .error{
     color: red;
+}
+
+
+/* 口コミ一覧ページ */
+.return{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: gray 2px 2px 2px;
+    cursor: pointer;
+    transform: translate(0, -5px);
+    position: relative;
+    z-index: 10;
+}
+
+.all-reviews__table{
+    width: 100%;
+}
+
+.all-reviews__ttl_row{
+    border-bottom: gray double 1px;
+}
+.all-reviews__table_row:not(:last-child){
+    border-bottom: gray solid 1px;
+}
+
+
+.all-reviews__table_stars{
+    font-size: 30px;
+    letter-spacing: -8px;
+    color: rgb(100, 100, 255);
 }

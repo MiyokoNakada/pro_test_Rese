@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/reviews.css') }}">
+<link rel="stylesheet" href="{{ asset('css/rating.css') }}">
 @endsection
 
 @section('content')
@@ -13,15 +13,15 @@
 
 
     <table class="all-reviews__table">
-        <tr>
+        <tr class="all-reviews__ttl_row">
             <th>評価</th>
             <th>コメント</th>
             <th>画像</th>
             <th>投稿者</th>
         </tr>
         @foreach($reviews as $review)
-        <tr>
-            <td>
+        <tr class="all-reviews__table_row">
+            <td class="all-reviews__table_stars">
                 @for ($i = 1; $i <= 5; $i++)
                     @if ($i <=$review->rating)
                     ★
