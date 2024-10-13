@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 class RatingController extends Controller
 {
-    //評価用画面表示
+    //口コミ投稿用画面表示
     public function showRating(Request $request)
     {
         $booking = Booking::find($request->booking_id);
@@ -27,7 +27,7 @@ class RatingController extends Controller
         return view('rating', compact('booking', 'areas', 'genres', 'shop'));
     }
 
-    //評価機能
+    //口コミ投稿機能
     public function rating(RatingRequest $request)
     {
         $form = $request->all();
@@ -48,7 +48,53 @@ class RatingController extends Controller
         $rating->save();
 
         $shop_id = Booking::find($request->booking_id)->shop_id;
-        return redirect('/detail/' . $shop_id)->with('message', '評価を投稿しました');
+        return redirect('/detail/' . $shop_id)->with('message', '口コミを投稿しました');
+    }
+
+    //口コミ編集画面表示
+    public function editRating($rating_id)
+    {
+        $rating = Rating::with('booking')
+            ->findOrFail($rating_id);
+
+        return view('rating_update', compact('rating'));
+    }
+
+    //口コミ編集機能
+    public function updateRating(RatingRequest $request)
+    {
+        $rating = Rating::with('booking')->findOrFail($request->rating_id);
+        $rating->rating = $request->rating;
+        $rating->comment = $request->comment;
+
+        if ($request->hasFile('rating_image')) {
+            $imageFile = $request->file('rating_image');
+            $imageName = $imageFile->getClientOriginalName();
+            if (app()->environment('local')) {
+                $imageFile->storeAs('public/image', $imageName);
+            } else {
+                Storage::disk('s3')->put('images/' . $imageName, file_get_contents($imageFile));
+                Storage::disk('s3')->setVisibility('images/' . $imageName, 'public');
+            }
+            $rating->rating_image = $imageName;
+        }
+
+        $rating->save();
+
+        $shop_id = Booking::find($rating->booking_id)->shop_id;
+        return redirect('/detail/' . $shop_id)->with('message', '口コミを更新しました');
+    }
+
+
+    //口コミ削除機能
+    public function deleteRating($rating_id)
+    {
+        $rating = Rating::findOrFail($rating_id);
+        $shop_id = Booking::find($rating->booking_id)->shop_id;
+
+        $rating->delete();
+
+        return redirect('/detail/' . $shop_id)->with('message', '１件の口コミを削除しました');
     }
 
     //口コミ一覧ページ表示

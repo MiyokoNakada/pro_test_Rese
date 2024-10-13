@@ -27,18 +27,40 @@
     padding: 10px;
 }
 
-.rating__form_textarea{
-    width: 90%;
+.rating__form{
+    position: relative;
 }
 
-.rating__table_submit-button{
+.rating__form_ttl{
+    margin-bottom: 10px;
+}
+
+.rating__form_textarea{
+    width: 90%;
+    padding: 5px;
+    color: gray;
+    border: gray solid 1px;
+}
+
+.rating__form_image{
+    width: 90%;
+    height: 100px;
+    background-color: white;
+}
+
+.rating__submit-button{
     background-color: white;
     width: 80%;
     height: 40px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    position: absolute;
+    bottom: -80px;
+    left: -40%;
 }
+
+
 
 /* 星マーク */
 .rating__form_star{
@@ -62,6 +84,28 @@
 
 .error{
     color: red;
+}
+
+/* 口コミ編集ページ */
+.rating-update__form_textarea{
+    width: 50%;
+    padding: 5px;
+    color: gray;
+    border: gray solid 1px;
+}
+.rating-update__form_image{
+    width: 50%;
+    height: 100px;
+    background-color: white;
+}
+.rating-update__submit-button{
+    background-color: white;
+    width: 50%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 

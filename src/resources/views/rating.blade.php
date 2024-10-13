@@ -54,17 +54,15 @@
             <span class="error">@error('rating'){{ $message }}@enderror</span>
 
             <h4 class="rating__form_ttl">口コミを投稿</h4>
-            <textarea class="rating__form_textarea" name="comment" rows="8" cols="50">{{ old('comment') }}</textarea>
+            <textarea class="rating__form_textarea" name="comment" rows="8" cols="50">{{ old('comment', 'カジュアルな夜のお出かけにおすすめのスポット') }}</textarea>
             <span class="error">@error('comment'){{ $message }}@enderror</span>
 
             <h4 class="rating__form_ttl">画像の追加</h4>
             <input class="rating__form_image" type="file" name="rating_image">
             <span class="error">@error('rating_image'){{ $message }}@enderror</span>
 
-            <div class="rating__form_submit"></div>
-            <button class="rating__table_submit-button" type="submit" class="btn btn-primary">口コミを投稿</button>
+            <button class="rating__submit-button" type="submit" class="btn btn-primary">口コミを投稿</button>
         </form>
-        </table>
     </div>
 </div>
 @endsection
