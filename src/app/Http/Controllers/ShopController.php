@@ -96,7 +96,6 @@ class ShopController extends Controller
             $pendingBooking = null;
         }
 
-
         return view('shop_detail', compact('detail', 'pendingBooking', 'userRating'));
     }
 }

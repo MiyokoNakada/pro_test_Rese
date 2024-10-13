@@ -60,15 +60,6 @@
                 </table>
 
                 @if($booking->visit_at)
-                @if($booking->rating)
-                <button class="my_bookings__table-rating">
-                    評価済み
-                </button>
-                @else
-                <button class="my_bookings__table-rating">
-                    <a href="{{ url('/rating?booking_id=' . $booking->id) }}">評価</a>
-                </button>
-                @endif
                 @if ($booking->payment && $booking->payment->status == 'completed')
                 <button class="my_bookings__table-payment">
                     支払い済み

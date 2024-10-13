@@ -64,7 +64,6 @@
             <div class="rating__form_submit"></div>
             <button class="rating__table_submit-button" type="submit" class="btn btn-primary">口コミを投稿</button>
         </form>
-        </table>
     </div>
 </div>
 @endsection

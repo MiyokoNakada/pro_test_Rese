@@ -8,6 +8,9 @@
 @component('components.menu2')
 @endcomponent
 
+<div class="message">
+    {{ session('message') }}
+</div>
 
 <div class="details">
     <div class="shop-detail">
@@ -37,8 +40,8 @@
             <div class="shop-rating__latest-review">
                 @if($userRating)
                 <div class="shop-rating__latest-review_buttons">
-                    <a class="shop-rating__latest-review_edit" href="{{ url('/rating/' . $userRating->id) }}">口コミを編集</a>
-                    <form class="shop-rating__latest-review_form" action="{{ url('/rating/' . $userRating->booking_id) }}" method="POST">
+                    <a class="shop-rating__latest-review_edit" href="{{ url('/rating/edit/' . $userRating->id) }}">口コミを編集</a>
+                    <form class="shop-rating__latest-review_form" action="{{ url('/rating/delete/' . $userRating->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="shop-rating__latest-review_delete" type="submit">口コミを削除</button>
