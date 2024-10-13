@@ -61,10 +61,11 @@ class RatingController extends Controller
     }
 
     //口コミ編集機能
-    public function updateRating(Request $request)
+    public function updateRating(RatingRequest $request)
     {
-        $form = $request->all();
-        $rating = Rating::findOrFail($request->rating_id);
+        $rating = Rating::with('booking')->findOrFail($request->rating_id);
+        $rating->rating = $request->rating;
+        $rating->comment = $request->comment;
 
         if ($request->hasFile('rating_image')) {
             $imageFile = $request->file('rating_image');
@@ -80,7 +81,7 @@ class RatingController extends Controller
 
         $rating->save();
 
-        $shop_id = Booking::find($request->booking_id)->shop_id;
+        $shop_id = Booking::find($rating->booking_id)->shop_id;
         return redirect('/detail/' . $shop_id)->with('message', '口コミを更新しました');
     }
 
