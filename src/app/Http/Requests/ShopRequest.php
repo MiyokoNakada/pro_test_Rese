@@ -22,11 +22,11 @@ class ShopRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required | string | max:191',
+            'name' => 'required | string | max:50',
             'area_id' => 'required | integer',
             'genre_id' => 'required | integer',
-            'description' => 'string',
-            'image' => 'image | mimes:jpg,jpeg,png,gif | max:2048',
+            'description' => 'nullable | string | max:400',
+            'image' => 'image | mimes:jpg,jpeg,png | max:2048',
         ];
     }
     //エラーメッセージの編集
@@ -35,14 +35,15 @@ class ShopRequest extends FormRequest
         return [
             'name.required' => '店名を入力してください',
             'name.string' => '文字列で入力してください',
-            'name.max' => '191字以下で入力してください',
+            'name.max' => '50字以下で入力してください',
             'area_id.required' => '地域名を選択してください',
             'area_id.integer' => '地域名を選択してください',
             'genre_id.required' => 'ジャンルを選択してください',
             'genre_id.integer' => 'ジャンルを選択してください',
             'description.string' => '文字列で入力してください',
+            'description.max' => '400字以下で入力してください',
             'image.image' => '指定されたファイルが画像ではありません',
-            'image.mimes' => '指定された拡張子(jpg/jpeg/png/gif)ではありません',
+            'image.mimes' => '指定された拡張子(jpg/jpeg/png)ではありません',
             'image.max' => 'ファイルサイズは2MB以内にしてください',
         ];
     }

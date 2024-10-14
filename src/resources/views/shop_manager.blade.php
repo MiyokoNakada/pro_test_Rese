@@ -85,6 +85,11 @@
         <div class="shop-info">
             <p>店舗情報がありません。店舗情報を作成してください。</p>
             <h3>店舗情報作成</h3>
+            @if(session('errors'))
+            @foreach(session('errors')->all() as $error)
+            <span class="error">{{ $error }}</span><br>
+            @endforeach
+            @endif
             <div class="shop-info__create">
                 <h4>1. フォームを記入して作成</h4>
                 <form action="/shop_manager/create" method="POST" enctype="multipart/form-data">
@@ -92,7 +97,9 @@
                     <table class="shop-info__table">
                         <tr>
                             <th>店名</th>
-                            <td><input type="text" name="name" placeholder="店舗名を入力"></td>
+                            <td><input type="text" name="name" placeholder="店舗名を入力">
+                                <span class="error">@error('name'){{ $message }}@enderror</span>
+                            </td>
                         </tr>
                         <tr>
                             <th>地域</th>
@@ -103,6 +110,7 @@
                                     <option value="{{ $area->id }}">{{ $area->name }}</option>
                                     @endforeach
                                 </select>
+                                <span class="error">@error('area_id'){{ $message }}@enderror</span>
                             </td>
                         </tr>
                         <tr>
@@ -114,15 +122,20 @@
                                     <option value="{{ $genre->id }}" {{ request('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
                                     @endforeach
                                 </select>
+                                <span class="error">@error('genre_id'){{ $message }}@enderror</span>
                             </td>
                         </tr>
                         <tr>
                             <th>詳細</th>
-                            <td><textarea name="description" cols="60" rows="5" placeholder="詳細を入力"></textarea></td>
+                            <td><textarea name="description" cols="60" rows="5" placeholder="詳細を入力"></textarea>
+                                <span class="error">@error('description'){{ $message }}@enderror</span>
+                            </td>
                         </tr>
                         <tr>
                             <th>店舗写真</th>
-                            <td><input type="file" name="image"></td>
+                            <td><input type="file" name="image">
+                                <span class="error">@error('image'){{ $message }}@enderror</span>
+                            </td>
                         </tr>
                         <tr>
                             <th></th>

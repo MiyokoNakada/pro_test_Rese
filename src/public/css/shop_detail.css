@@ -136,9 +136,10 @@
     border-top-right-radius: 5px;
     box-shadow: gray 2px 2px 2px;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
     .booking-card{
         padding: 20px;
+        height: fit-content;
     }
 }
 
@@ -205,7 +206,7 @@
     position: absolute;
     bottom: -80px;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
     .booking-submit{
         width: calc(100% + 40px);
         margin: 0 -20px;

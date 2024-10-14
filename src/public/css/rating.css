@@ -6,6 +6,11 @@
     display: flex;
     justify-content: left;
 }
+@media screen and (max-width: 768px) {
+    .rating{
+        display: block;
+    }
+}
 
 .rating__inner-left{
     width: 40%;
@@ -22,17 +27,39 @@
     justify-content: center;
     border-right: #D2D2D2 solid 1px;
 }
+@media screen and (max-width: 768px) {
+    .rating__inner-left{
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .rating__inner-left_inner{
+        display: block;
+    }
+}
+
 .rating__shops-card{
     width: 300px;
 }
 .rating__title{
     font-size: 24px;
 }
+@media screen and (max-width: 768px) {
+    .rating__title{
+        font-size: 18px;
+    }
+}
 
 
 .rating__inner-right {
     width: 50%;
     padding-left: 50px;
+}
+@media screen and (max-width: 768px) {
+    .rating__inner-right{
+        width: 100%;
+        padding-left: 0;
+    }
 }
 
 .rating__form{
@@ -85,7 +112,13 @@
     bottom: -80px;
     left: -40%;
 }
-
+@media screen and (max-width: 768px) {
+    .rating__submit-button{
+        width: 100%;
+        bottom: -60px;
+        left: 0%;
+    }
+}
 
 
 /* 星マーク */
@@ -115,6 +148,11 @@
 /* 口コミ編集ページ */
 .rating-update__inner{
     width: 50%;
+}
+@media screen and (max-width: 768px) {
+    .rating-update__inner{
+        width: 100%;
+    }
 }
 
 .rating-update__current-image{
@@ -172,7 +210,6 @@
 .all-reviews__table-admin{
     width: 5%;
 }
-
 .all-reviews__table-comment_td{
     padding-left: 20px;
     text-align: left;
@@ -182,6 +219,25 @@
     border-radius: 5px;
     color: white;
     background-color: rgb(77, 77, 255);
+}
+@media screen and (max-width: 768px) {
+    .all-reviews__table{
+        text-align: left;
+    }
+    .all-reviews__table th{
+        display: none;
+    }
+    .all-reviews__table_row,
+    .all-reviews__table td{
+        display: block;
+        width: 100%;
+    }
+    .all-reviews__table-comment_td{
+        padding-left: 0;
+    }
+    .all-reviews__table td:nth-last-child(2)::before{
+        content: "投稿者：";
+    }
 }
 
 .all-reviews__ttl_row{

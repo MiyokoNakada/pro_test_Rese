@@ -40,7 +40,7 @@
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="rating_id" value="{{$review->id}}">
-                    <button class="all-reviews__admin-delete_button" type="submit" class="btn btn-danger">口コミ<br>削除</button>
+                    <button class="all-reviews__admin-delete_button" type="submit" class="btn btn-danger">口コミ削除</button>
                 </form>
                 @endcan
             </td>
