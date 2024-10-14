@@ -67,7 +67,6 @@
                     クリックして写真を追加<br><span>またはドロッグアンドドロップ</span>
                     <p class="rating__image_selected-file" id="fileName" style="display:none;">選択されたファイル: <span id="selectedFileName"></span></p>
                 </div>
-
             </div>
             <span class="error">@error('rating_image'){{ $message }}@enderror</span>
 

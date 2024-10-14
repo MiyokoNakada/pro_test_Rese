@@ -57,6 +57,7 @@
 
 .rating__image *{
     background-color: white;
+    border-radius: 5px;
 }
 .rating__image_drop-area{
     width: 100%;
@@ -77,7 +78,7 @@
     background-color: white;
     width: 80%;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
     position: absolute;
@@ -112,30 +113,25 @@
 }
 
 /* 口コミ編集ページ */
-.rating-update__form_textarea{
+.rating-update__inner{
     width: 50%;
-    padding: 5px;
-    color: gray;
-    border: gray solid 1px;
 }
-.rating-update__form_image{
-    width: 50%;
-    height: 100px;
-    }
-.rating-update__form_image *{
-    background-color: white;
-}
+
 .rating-update__current-image{
     display: inline-block;
 }
 .rating-update__submit-button{
     background-color: white;
-    width: 50%;
+    width: 100%;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
-    margin-top: 20px;
+    margin: 20px 0;
+}
+.rating-update__remove-image{
+    border: none;
+    border-radius: 3px;
 }
 
 
@@ -158,6 +154,34 @@
 
 .all-reviews__table{
     width: 100%;
+    text-align: center;
+}
+
+.all-reviews__table-stars{
+    width: 15%;
+}
+.all-reviews__table-comment{
+    width: 50%;
+}
+.all-reviews__table-image{
+    width: 20%;
+}
+.all-reviews__table-user{
+    width: 10%;
+}
+.all-reviews__table-admin{
+    width: 5%;
+}
+
+.all-reviews__table-comment_td{
+    padding-left: 20px;
+    text-align: left;
+}
+.all-reviews__admin-delete_button{
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(77, 77, 255);
 }
 
 .all-reviews__ttl_row{

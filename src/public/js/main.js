@@ -103,10 +103,19 @@ document.addEventListener('DOMContentLoaded', function() {
         handleFile(file);
     });
 
+    dropArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropArea.classList.add('dragover');
+    });
+    dropArea.addEventListener('dragleave', function() {
+        dropArea.classList.remove('dragover');
+    });
     dropArea.addEventListener('drop', function(e) {
         e.preventDefault();
         dropArea.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
+        const files = e.dataTransfer.files;
+        uploadFile.files = files;
+        const file = files[0];
         handleFile(file);
     });
 });
