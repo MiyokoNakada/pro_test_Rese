@@ -31,15 +31,25 @@
         <span class="error">@error('rating'){{ $message }}@enderror</span>
 
         <h4 class="rating__form_ttl">口コミを投稿</h4>
-        <textarea class="rating-update__form_textarea" name="comment" rows="8" cols="50">{{ old('comment', $rating->comment) }}</textarea>
+        <textarea class="rating-update__form_textarea" name="comment" rows="8" cols="50" id="comment" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment', $rating->comment) }}</textarea>
+        <div class="rating__text-count">
+            <span id="charCount">0 / 400(最高文字数)</span>
+        </div>
         <span class="error">@error('comment'){{ $message }}@enderror</span>
 
         <h4 class="rating__form_ttl">画像の追加</h4>
-        <input class="rating-update__form_image" type="file" name="rating_image">
-        <span class="error">@error('rating_image'){{ $message }}@enderror</span>
         @if($rating->rating_image)
-        <p>現在の画像: <img src="{{ asset('storage/image/' . $rating->rating_image) }}" alt="口コミ画像" style="max-width: 150px;"></p>
         @endif
+        <div class="rating-update__form_image" id="inputFile">
+            <input class="rating__image_input" type="file" name="rating_image" id="uploadFile" style="display: none;">
+            <div class="rating__image_drop-area" id="dropArea">
+                クリックして写真を追加<br><span>またはドロッグアンドドロップ</span>
+                <p class="rating__image_selected-file" id="fileName" style="display:none;">選択されたファイル: <span id="selectedFileName"></span></p>
+            </div>>
+        </div>
+        <p class="rating-update__current-image">現在の画像: <img src="{{ asset('storage/image/' . $rating->rating_image) }}" alt="口コミ画像" style="max-width: 150px;"></p>
+        <span class="error">@error('rating_image'){{ $message }}@enderror</span>
+
 
         <div class="rating__form_submit"></div>
         <button class="rating-update__submit-button" type="submit" class="btn btn-primary">口コミを投稿</button>

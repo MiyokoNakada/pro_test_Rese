@@ -13,7 +13,7 @@
         <div class="rating__inner-left_inner">
             <h3 class="rating__title">今回のご利用はいかがでしたか？</h3>
 
-            <div class="shops">
+            <div class="rating__shops-card">
                 <div class="shops-cards">
                     @if(app()->environment('local'))
                     <img class="shops-cards__img" src="{{ asset('storage/image/' . $shop->image) }}" alt="">
@@ -54,11 +54,21 @@
             <span class="error">@error('rating'){{ $message }}@enderror</span>
 
             <h4 class="rating__form_ttl">口コミを投稿</h4>
-            <textarea class="rating__form_textarea" name="comment" rows="8" cols="50">{{ old('comment', 'カジュアルな夜のお出かけにおすすめのスポット') }}</textarea>
+            <textarea class="rating__form_textarea" name="comment" rows="8" cols="50" id="comment" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment') }}</textarea>
+            <div class="rating__text-count">
+                <span id="charCount">0 / 400(最高文字数)</span>
+            </div>
             <span class="error">@error('comment'){{ $message }}@enderror</span>
 
             <h4 class="rating__form_ttl">画像の追加</h4>
-            <input class="rating__form_image" type="file" name="rating_image">
+            <div class="rating__image" id="inputFile">
+                <input class="rating__image_input" type="file" name="rating_image" id="uploadFile" style="display: none;">
+                <div class="rating__image_drop-area" id="dropArea">
+                    クリックして写真を追加<br><span>またはドロッグアンドドロップ</span>
+                    <p class="rating__image_selected-file" id="fileName" style="display:none;">選択されたファイル: <span id="selectedFileName"></span></p>
+                </div>
+
+            </div>
             <span class="error">@error('rating_image'){{ $message }}@enderror</span>
 
             <button class="rating__submit-button" type="submit" class="btn btn-primary">口コミを投稿</button>

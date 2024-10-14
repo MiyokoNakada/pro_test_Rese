@@ -4,18 +4,26 @@
 
 .rating{
     display: flex;
-    justify-content: space-around;
+    justify-content: left;
 }
 
 .rating__inner-left{
-    width: 20%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .rating__inner-left_inner{
-    width: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: #D2D2D2 solid 1px;
+}
+.rating__shops-card{
+    width: 300px;
 }
 .rating__title{
     font-size: 24px;
@@ -24,7 +32,7 @@
 
 .rating__inner-right {
     width: 50%;
-    padding: 10px;
+    padding-left: 50px;
 }
 
 .rating__form{
@@ -36,16 +44,33 @@
 }
 
 .rating__form_textarea{
-    width: 90%;
+    width: 100%;
     padding: 5px;
     color: gray;
     border: gray solid 1px;
 }
+.rating__text-count{
+    margin-top: 0;
+    text-align: right;
+    font-size: 12px;
+}
 
-.rating__form_image{
-    width: 90%;
-    height: 100px;
+.rating__image *{
     background-color: white;
+}
+.rating__image_drop-area{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    padding-top: 20px;
+    cursor: pointer;
+}
+.rating__image_drop-area span{
+    font-size: small;
+}
+.rating__image_selected-file{
+    text-align: center;
+    font-size: 12px;
 }
 
 .rating__submit-button{
@@ -96,7 +121,12 @@
 .rating-update__form_image{
     width: 50%;
     height: 100px;
+    }
+.rating-update__form_image *{
     background-color: white;
+}
+.rating-update__current-image{
+    display: inline-block;
 }
 .rating-update__submit-button{
     background-color: white;
