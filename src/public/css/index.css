@@ -2,6 +2,12 @@
     display: flex;
     justify-content: right;
 }
+@media screen and (max-width: 768px) {
+    .sort_search{
+        display: block;
+    }
+}
+
 
 .sort *{
     background-color: white;
@@ -15,6 +21,13 @@
     box-shadow: gray 2px 2px 2px;
     position: relative;
     z-index: 30;
+}
+@media screen and (max-width: 768px) {
+    .sort{
+        margin: 0;
+        position: static;
+        z-index: 10;
+    }
 }
 
 .sort__form{
