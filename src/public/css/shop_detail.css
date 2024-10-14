@@ -1,4 +1,3 @@
-
 .details{
     display: flex;
     margin-bottom: 20px;
@@ -62,7 +61,6 @@
     width: 100%;
     text-align: center;
     padding-bottom: 20px;
-    border-bottom: solid gray 1px;
     margin-bottom: 10px;
 }
 .shop-rating__all-reviews_link{
@@ -78,6 +76,7 @@
 }
 
 .shop-rating__latest-review{
+    border-top: solid gray 1px;
     border-bottom: solid gray 1px;
 }
 .shop-rating__latest-review_buttons{

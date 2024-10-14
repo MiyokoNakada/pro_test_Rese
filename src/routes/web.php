@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/rating/edit', [RatingController::class, 'updateRating']);
     Route::delete('/rating/delete/{rating_id}', [RatingController::class, 'deleteRating']);
     Route::get('/rating/all_reviews/{shop_id}', [RatingController::class, 'allReviews']);
+    Route::delete('/rating/all_reviews/admin_delete', [RatingController::class, 'deleteReviews']);
 
     Route::get('/payment', [PaymentController::class, 'paymentPage']);
     Route::post('/payment', [PaymentController::class, 'payment']);

@@ -83,3 +83,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+//count input(rating)
+document.getElementById('comment').addEventListener('keyup', function() {
+    const charCount = this.value.length;
+    document.getElementById('charCount').textContent = charCount + " / 400";
+});
+
+//upload image file(rating)
+document.addEventListener('DOMContentLoaded', function() {
+    const dropArea = document.getElementById('dropArea');
+    const uploadFile = document.getElementById('uploadFile');
+
+    dropArea.addEventListener('click', function() {
+        uploadFile.click();
+    });
+    uploadFile.addEventListener('change', function() {
+        const file = uploadFile.files[0];
+        handleFile(file);
+    });
+
+    dropArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropArea.classList.add('dragover');
+    });
+    dropArea.addEventListener('dragleave', function() {
+        dropArea.classList.remove('dragover');
+    });
+    dropArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropArea.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        uploadFile.files = files;
+        const file = files[0];
+        handleFile(file);
+    });
+});
+function handleFile(file) {
+    const selectedFileName = document.getElementById('selectedFileName');
+    const fileNameDisplay = document.getElementById('fileName');
+
+    if (file) {
+        selectedFileName.textContent = file.name;
+        fileNameDisplay.style.display = 'block';
+        console.log('ファイルが選択されました:', file.name);
+    } else {
+        fileNameDisplay.style.display = 'none';
+    }
+}

@@ -4,18 +4,26 @@
 
 .rating{
     display: flex;
-    justify-content: space-around;
+    justify-content: left;
 }
 
 .rating__inner-left{
-    width: 20%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .rating__inner-left_inner{
-    width: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: #D2D2D2 solid 1px;
+}
+.rating__shops-card{
+    width: 300px;
 }
 .rating__title{
     font-size: 24px;
@@ -24,7 +32,7 @@
 
 .rating__inner-right {
     width: 50%;
-    padding: 10px;
+    padding-left: 50px;
 }
 
 .rating__form{
@@ -36,23 +44,41 @@
 }
 
 .rating__form_textarea{
-    width: 90%;
+    width: 100%;
     padding: 5px;
     color: gray;
     border: gray solid 1px;
 }
+.rating__text-count{
+    margin-top: 0;
+    text-align: right;
+    font-size: 12px;
+}
 
-.rating__form_image{
-    width: 90%;
-    height: 100px;
+.rating__image *{
     background-color: white;
+    border-radius: 5px;
+}
+.rating__image_drop-area{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    padding-top: 20px;
+    cursor: pointer;
+}
+.rating__image_drop-area span{
+    font-size: small;
+}
+.rating__image_selected-file{
+    text-align: center;
+    font-size: 12px;
 }
 
 .rating__submit-button{
     background-color: white;
     width: 80%;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
     position: absolute;
@@ -87,25 +113,25 @@
 }
 
 /* 口コミ編集ページ */
-.rating-update__form_textarea{
+.rating-update__inner{
     width: 50%;
-    padding: 5px;
-    color: gray;
-    border: gray solid 1px;
 }
-.rating-update__form_image{
-    width: 50%;
-    height: 100px;
-    background-color: white;
+
+.rating-update__current-image{
+    display: inline-block;
 }
 .rating-update__submit-button{
     background-color: white;
-    width: 50%;
+    width: 100%;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
-    margin-top: 20px;
+    margin: 20px 0;
+}
+.rating-update__remove-image{
+    border: none;
+    border-radius: 3px;
 }
 
 
@@ -128,6 +154,34 @@
 
 .all-reviews__table{
     width: 100%;
+    text-align: center;
+}
+
+.all-reviews__table-stars{
+    width: 15%;
+}
+.all-reviews__table-comment{
+    width: 50%;
+}
+.all-reviews__table-image{
+    width: 20%;
+}
+.all-reviews__table-user{
+    width: 10%;
+}
+.all-reviews__table-admin{
+    width: 5%;
+}
+
+.all-reviews__table-comment_td{
+    padding-left: 20px;
+    text-align: left;
+}
+.all-reviews__admin-delete_button{
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(77, 77, 255);
 }
 
 .all-reviews__ttl_row{

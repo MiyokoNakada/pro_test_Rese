@@ -78,6 +78,16 @@ class RatingController extends Controller
             }
             $rating->rating_image = $imageName;
         }
+        if ($request->has('remove')) {
+            if ($rating->rating_image) {
+                if (app()->environment('local')) {
+                    Storage::delete('public/image/' . $rating->rating_image);
+                } else {
+                    Storage::disk('s3')->delete('images/' . $rating->rating_image);
+                }
+                $rating->rating_image = null;
+            }
+        }
 
         $rating->save();
 
@@ -107,5 +117,15 @@ class RatingController extends Controller
             ->get();
 
         return view('reviews', compact('shop', 'reviews'));
+    }
+
+    //管理者用口コミ削除機能
+    public function deleteReviews(Request $request){
+        $rating = Rating::findOrFail($request->rating_id);
+        $shop_id = Booking::find($rating->booking_id)->shop_id;
+
+        $rating->delete();
+
+        return redirect('/rating/all_reviews/' . $shop_id)->with('message', '１件の口コミを削除しました');
     }
 }
