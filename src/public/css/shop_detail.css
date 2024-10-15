@@ -102,9 +102,12 @@
     letter-spacing: -5px;
     color: rgb(100, 100, 255);
 }
-.shop-rating__latest-review_stars,
-.shop-rating__latest-review_comment{
+.shop-rating__latest-review_stars{
     margin: 0;
+}
+.shop-rating__latest-review_comment{
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 .shop-rating__latest-review_image{
     margin-bottom: 20px;
