@@ -84,8 +84,8 @@ class ShopsImport implements ToModel, WithHeadingRow, WithValidation
             '*.shop' => 'required|string|max:50',
             '*.area' => 'required|string|in:大阪府,東京都,福岡県',
             '*.genre' => 'required|string|in:イタリアン,ラーメン,居酒屋,寿司,焼肉',
-            '*.description' => 'nullable|string|max:400',
-            '*.image' => ['nullable', 'url', 'regex:/\.(jpg|jpeg|png)$/i'],
+            '*.description' => 'required|string|max:400',
+            '*.image' => ['required', 'url', 'regex:/\.(jpg|jpeg|png)$/i'],
         ];
     }
     // バリデーションエラーメッセージ
@@ -101,8 +101,10 @@ class ShopsImport implements ToModel, WithHeadingRow, WithValidation
             '*.genre.required' => 'ジャンルを入力してください',
             '*.genre.string' => '文字で入力してください',
             '*.genre.in' => 'ジャンルは「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれかを指定してください',
+            '*.description.required' => '店舗詳細を入力してください',
             '*.description.string' => '文字で入力してください',
             '*.description.max' => '400字以下で入力してください',
+            '*.image.required' => '店舗画像のURLを入力してください',
             '*.image.url' => '画像をURL形式で記載してください',
             '*.image.regex' => '画像の拡張子はJPEGまたはPNG形式のみ使用できます',
         ];

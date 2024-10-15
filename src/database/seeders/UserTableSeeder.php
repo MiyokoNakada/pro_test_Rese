@@ -187,5 +187,15 @@ class UserTableSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
         ];
         DB::table('users')->insert($param);
+
+        // 一般ユーザーの作成
+        $param = [
+            'name' => 'test',
+            'email' => 'test@email.com',
+            'password' => Hash::make('test_pass'),
+            'role' => '3',
+            'email_verified_at' => Carbon::now(),
+        ];
+        DB::table('users')->insert($param);
     }
 }

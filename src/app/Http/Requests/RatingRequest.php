@@ -24,7 +24,7 @@ class RatingRequest extends FormRequest
         return [
             'rating' => 'required',
             'comment' => 'nullable| string | max:400',
-            'rating_image' => 'nullable|image|mimes:jpeg,png|max:2048',
+            'rating_image' => 'nullable|mimes:jpeg,png|max:2048',
         ];
     }
 
@@ -35,7 +35,6 @@ class RatingRequest extends FormRequest
             'rating.required' => '評価を選択してください',
             'comment.string' => '文字列で入力してください',
             'comment.max' => '400字以下で入力してください',
-            'rating_image.image' => '指定されたファイルが画像ではありません',
             'rating_image.mimes' => '指定された拡張子(jpeg/png)ではありません',
             'rating_image.max' => 'ファイルサイズは2MB以内にしてください',
         ];
