@@ -69,7 +69,11 @@ class ShopsImport implements ToModel, WithHeadingRow, WithValidation
             }
             $imageName = Str::random(20) . '.' . $extension;
             $stream = $response->getBody()->getContents();
-            Storage::put('public/image/' . $imageName, $stream);
+            if (app()->environment('local')) {
+                Storage::put('public/image/' . $imageName, $stream);
+            } else {
+                Storage::put('images/' . $imageName, $stream);
+            }
 
             return $imageName;
         }
