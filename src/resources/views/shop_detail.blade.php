@@ -58,7 +58,11 @@
                 </p>
                 <p class="shop-rating__latest-review_comment">{{ $userRating->comment }}</p>
                 @if($userRating->rating_image)
+                @if(app()->environment('local'))
                 <img class="shop-rating__latest-review_image" src="{{ asset('storage/image/' . $userRating->rating_image) }}" alt="" width="200px">
+                @else
+                <img class="shop-rating__latest-review_image" src="{{ Storage::disk('s3')->url('images/' . $userRating->rating_image) }}" alt="" width="200px">
+                @endif
                 @endif
             </div>
             @endif
