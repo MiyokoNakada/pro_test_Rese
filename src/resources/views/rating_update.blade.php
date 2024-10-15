@@ -46,7 +46,13 @@
                     <p class="rating__image_selected-file" id="fileName" style="display:none;">選択されたファイル: <span id="selectedFileName"></span></p>
                 </div>
                 @if($rating->rating_image)
-                <p class="rating-update__current-image">現在の画像: <img src="{{ asset('storage/image/' . $rating->rating_image) }}" alt="口コミ画像" style="max-width: 150px;"></p>
+                <p class="rating-update__current-image">現在の画像:
+                    @if(app()->environment('local'))
+                    <img src="{{ asset('storage/image/' . $rating->rating_image) }}" alt="口コミ画像" style="max-width: 150px;">
+                    @else
+                    <img src="{{ Storage::disk('s3')->url('images/' . $rating->rating_image) }}" alt="口コミ画像" style="max-width: 150px;">
+                    @endif
+                </p>
                 <button type="submit" name="remove" class="rating-update__remove-image">画像を削除</button>
                 @endif
             </div>

@@ -59,10 +59,10 @@ class ShopManagerController extends Controller
             $imageFile = $request->file('image');
             $imageName = $imageFile->getClientOriginalName();
             if (app()->environment('local')) {
-                $path = $imageFile->storeAs('public/image', $imageName);
+                $imageFile->storeAs('public/image', $imageName);
                 $form['image'] = $imageName;
             } else {
-                $path = Storage::disk('s3')->put('images/' . $imageName, file_get_contents($imageFile));
+                Storage::disk('s3')->put('images/' . $imageName, file_get_contents($imageFile));
                 Storage::disk('s3')->setVisibility('images/' . $imageName, 'public');
                 $form['image'] = $imageName;
             }

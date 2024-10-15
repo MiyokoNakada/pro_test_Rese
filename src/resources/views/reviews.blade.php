@@ -32,7 +32,13 @@
                     @endfor
             </td>
             <td class="all-reviews__table-comment_td">{{ $review->comment}}</td>
-            <td><img src="{{ asset('storage/image/' . $review->rating_image) }}" alt="" width="200px"></td>
+            <td>
+                @if(app()->environment('local'))
+                <img src="{{ asset('storage/image/' . $review->rating_image) }}" alt="" width="200px">
+                @else
+                <img src="{{ Storage::disk('s3')->url('images/' . $review->rating_image) }}" alt="" width="200px">
+                @endif
+            </td>
             <td>{{ $review->booking->user->name}}</td>
             <td>
                 @can('admin')
