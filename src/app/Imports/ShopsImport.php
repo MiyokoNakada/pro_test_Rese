@@ -7,11 +7,12 @@ use App\Models\Manager;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
-class ShopsImport implements ToModel, WithHeadingRow
+class ShopsImport implements ToModel, WithHeadingRow, WithValidation
 {
     public function model(array $row)
     {
@@ -48,7 +49,7 @@ class ShopsImport implements ToModel, WithHeadingRow
         return $shop;
     }
 
-    //画像をダウンロードして保存するメソッド
+    //画像をダウンロードして保存
     private function downloadImage($url)
     {
         $response = Http::withOptions(['stream' => true])->get($url);
@@ -74,5 +75,36 @@ class ShopsImport implements ToModel, WithHeadingRow
         }
 
         return null;
+    }
+
+    // バリデーションルール
+    public function rules(): array
+    {
+        return [
+            '*.shop' => 'required|string|max:50',
+            '*.area' => 'required|string|in:大阪府,東京都,福岡県',
+            '*.genre' => 'required|string|in:イタリアン,ラーメン,居酒屋,寿司,焼肉',
+            '*.description' => 'nullable|string|max:400',
+            '*.image' => ['nullable', 'url', 'regex:/\.(jpg|jpeg|png)$/i'],
+        ];
+    }
+    // バリデーションエラーメッセージ
+    public function customValidationMessages()
+    {
+        return [
+            '*.shop.required' => '店名を入力してください',
+            '*.shop.string' => '文字で入力してください',
+            '*.shop.max' => '50字以下で入力してください',
+            '*.area.required' => '地域名を入力してください',
+            '*.area.string' => '文字で入力してください',
+            '*.area.in' => '地域名は「東京都」「大阪府」「福岡県」のいずれかを指定してください',
+            '*.genre.required' => 'ジャンルを入力してください',
+            '*.genre.string' => '文字で入力してください',
+            '*.genre.in' => 'ジャンルは「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれかを指定してください',
+            '*.description.string' => '文字で入力してください',
+            '*.description.max' => '400字以下で入力してください',
+            '*.image.url' => '画像をURL形式で記載してください',
+            '*.image.regex' => '画像の拡張子はJPEGまたはPNG形式のみ使用できます',
+        ];
     }
 }

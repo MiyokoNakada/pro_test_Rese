@@ -22,12 +22,7 @@ class CsvShopRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'csv_file' => 'required|file|mimes:csv',
-            'name' => 'required|string|max:50',
-            'area' => 'required|string|in:東京都,大阪府,福岡県',
-            'genre' => 'required|string|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
-            'description' => 'nullable|string|max:400',
-            'image' => 'nullable|url',
+            'csv_file' => 'required|file|mimes:csv,txt|max:2048',
         ];
     }
 
@@ -37,17 +32,8 @@ class CsvShopRequest extends FormRequest
         return [
             'csv_file.required' => 'ファイルを選択してください',
             'csv_file.file' => 'ファイルを選択してください',
-            'csv_file.mines' => '指定されたファイルがCSV形式ではありません',
-            'name.required' => '店名を入力してください',
-            'name.string' => '文字列で入力してください',
-            'name.max' => '50字以下で入力してください',
-            'area.required' => '地域名が入力されていません',
-            'area.in' => '地域は「東京都」「大阪府」「福岡県」のいずれかを指定してください',
-            'genre.required' => 'ジャンルが入力されていません',
-            'genre.in' => 'ジャンルは「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれかを指定してください',
-            'description.string' => '文字列で入力してください',
-            'description.max' => '400字以下で入力してください',
-            'image.url' => '画像のURLを指定してください',
+            'csv_file.mimes' => '指定されたファイルがCSV形式ではありません',
+            'csv_file.max' => 'CSVファイルは最大2MBまでです。',
         ];
     }
 }
