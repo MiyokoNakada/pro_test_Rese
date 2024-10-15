@@ -15,6 +15,8 @@ use App\Http\Requests\ShopRequest;
 use App\Http\Requests\CsvShopRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ShopsImport;
+use Illuminate\Validation\ValidationException;
+
 
 class ShopManagerController extends Controller
 {
@@ -53,12 +55,6 @@ class ShopManagerController extends Controller
         $form = $request->all();
         $shop = Shop::create($form);
 
-        if ($request->fails()) {
-            return redirect('shop_manager')
-            ->withErrors($request->errors(), 'form_errors')
-                ->withInput();
-        }
-
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $imageName = $imageFile->getClientOriginalName();
@@ -84,17 +80,15 @@ class ShopManagerController extends Controller
     public function importCsv(CsvShopRequest $request)
     {
         if ($request->hasFile('csv_file')) {
-            if ($request->fails()) {
-                return redirect('shop_manager')
-                    ->withErrors($request->errors(), 'csv_errors')
-                    ->withInput();
+            try {
+                Excel::import(new ShopsImport, $request->file('csv_file'));
+                return redirect('shop_manager')->with('message', '店舗情報を作成しました');
+            } catch (ValidationException $e) {
+                return redirect('shop_manager')-> withErrors($e->validator)->withInput();
+            } catch (\Exception $e) {
+                return redirect('shop_manager')->with('error', 'インポート中にエラーが発生しました。');
             }
-
-            Excel::import(new ShopsImport, $request->file('csv_file'));
-
-            return redirect('shop_manager')->with('message', '店舗情報を作成しました');
         }
-
         return redirect('shop_manager')->with('error', 'ファイルが選択されていません。');
     }
 

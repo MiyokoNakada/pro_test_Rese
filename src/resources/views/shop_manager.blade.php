@@ -86,9 +86,6 @@
             <p>店舗情報がありません。店舗情報を作成してください。</p>
             <h3>店舗情報作成</h3>
             @if(session('errors'))
-            @foreach(session('errors')->all() as $error)
-            <span class="error">{{ $error }}</span><br>
-            @endforeach
             @endif
             <div class="shop-info__create">
                 <h4>1. フォームを記入して作成</h4>
@@ -146,6 +143,14 @@
             </div>
             <div class="shop-info__csv-import">
                 <h4>2. 店舗情報CSVをインポートして作成</h4>
+                <span class="error">@error('csv_file'){{ $message }}@enderror</span>
+                @if ($errors->any())
+                <ul class="error">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                @endif
                 <form class="csv-import__form" action="/shop_manager/csv_import" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="csv_file" accept=".csv">
