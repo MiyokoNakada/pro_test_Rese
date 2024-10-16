@@ -13,7 +13,7 @@
 店舗の詳細説明を見ることができます。この画面から日時、人数を指定して予約できます。<br>
 予約来店後に店舗への口コミを投稿することができます(口コミを投稿ボタンは店舗側が来店確認をした後に表示されます)。<br>
 <img src="https://github.com/user-attachments/assets/04c8e42d-2ed6-4a11-b639-5aad994aa2ef" width=50%><br>
-口コミ投稿後は自分の口コミが店舗詳細ページに表示されます(１つの店舗につき口コミは１件のみ投稿可能です)。<br>
+口コミ投稿後はユーザー自身の口コミが店舗詳細ページに表示されます(口コミは１つの店舗につき１件のみ投稿可能です)。<br>
 <img src="https://github.com/user-attachments/assets/04e13b09-6ef4-4cbf-9b49-5cf03f72e051" width=50%><br><br>
 
 ＜口コミ投稿用ページ＞ <br>
@@ -55,8 +55,7 @@ CSVファイルの記載項目は下記の通りです。<br>
 
 ## URL
 
-- 本番環境：http://your_ec2_instance_public_ip/
-  （AWSで作成したEC2インスタンスのPublicIPアドレスを当ててください)
+- 本番環境：http://13.211.238.93/
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
   <br><br>
@@ -216,23 +215,11 @@ https://github.com/MiyokoNakada/pro_test_Rese
    ```
    server_name your_ec2_instance_public_ip;
    ```
-5. `docker-compose.prod.yml` ファイルを編集
-   ```
-   phpmyadmin:
-   image: phpmyadmin/phpmyadmin
-   environment:
-     - PMA_ARBITRARY=1
-     - PMA_HOST=RDS_endpoint
-     - PMA_USER=RDS_user
-     - PMA_PASSWORD=RDS_password
-   ports:
-     - 8080:80
-   ```
-6. Docker コンテナをビルドして起動
+5. Docker コンテナをビルドして起動
    ```sh
    docker-compose -f docker-compose.prod.yml up --build -d
    ```
-7. .env ファイルを作成し、必要な環境変数を設定
+6. .env ファイルを作成し、必要な環境変数を設定
 
    ```sh
    cp src/.env.example src/.env
@@ -270,30 +257,30 @@ https://github.com/MiyokoNakada/pro_test_Rese
    STRIPE_SECRET=sk_test_51xxxx(your_stripe_secret_key)
    ```
 
-8. PHP コンテナにログイン後、composer のインストール
+7. PHP コンテナにログイン後、composer のインストール
    ```sh
    docker-compose -f docker-compose.prod.yml exec php bash
    ```
    ```php
    composer install
    ```   
-9. S3ファイルシステムのインストール
+8. S3ファイルシステムのインストール
    ```php
    composer require league/flysystem-aws-s3-v3 "^3.0" --with-all-dependencies
    ```
-10. アプリケーションキーの作成
+9. アプリケーションキーの作成
     ```php
     php artisan key:generate
     ```
-11. マイグレーションの実行  
+10. マイグレーションの実行  
     ```php
     php artisan migrate
     ```
-12. シンボリックリンクの作成
+11. シンボリックリンクの作成
     ```php
     php artisan storage:link
     ```
-13. Seederデータの挿入
+12. Seederデータの挿入
     ```php
     php artisan db:seed
     ```
